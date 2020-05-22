@@ -1,0 +1,76 @@
+h1 {
+    background-image: linear-gradient(to bottom right, rgb(0, 183, 255), rgb(204, 114, 231));
+    text-align: center;
+    color: rgb(234, 136, 243);
+    text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
+    box-shadow: 10px 10px 8px #888888;
+    padding: 15px;
+}
+
+body {
+    background-image: linear-gradient(to bottom right, rgba(0, 183, 255, 0.527), rgb(225, 143, 250));
+}
+
+table {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 5px;
+    /* border-collapse: collapse; dont want to collapse ALL borders*/
+    
+}
+
+th {
+    border-bottom: 1px solid black;
+    
+}
+
+th, td { /* targets both things */
+    padding: 5px;
+    
+}
+
+thead{
+    background-color: black;
+    color: white;
+}
+
+td {
+    text-align: center;
+    border-bottom: 1px solid black;
+    text-align: left;    
+    
+}
+
+.salary{ /*pushes salary to right of box*/
+    text-align:right;
+}
+
+tr:last-child td {
+    border-bottom: 0px;
+}
+
+.delete-button{
+    padding: 5px;
+    border-radius: 5px;
+    width: 100%;
+    color: black;
+    background-color: red;
+    border: 3px solid black;
+    font: 12px Arial, sans-serif;
+    font-weight: bold;
+}
+
+.submit{
+    float: right;
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 10px;
+    color: white;
+    background-color: green;
+    border: 3px solid white;
+    font: 16px Arial, sans-serif;
+
+}
