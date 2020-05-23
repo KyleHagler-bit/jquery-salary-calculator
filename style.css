@@ -1,4 +1,4 @@
-h1 {
+h1 { /*"Salary Calculator"*/
     background-image: linear-gradient(to bottom right, rgb(0, 183, 255), rgb(204, 114, 231));
     text-align: center;
     color: rgb(234, 136, 243);
@@ -42,10 +42,7 @@ th, td { /* targets both things */
     
 }
 
-thead{
-    background-color: black;
-    color: white;
-}
+
 
 td {
     text-align: center;
@@ -103,3 +100,17 @@ tr:last-child td { /*stop bottom most row from displaying border line*/
 .content{
     border: 2px solid black;
 }
+
+
+tr:nth-child(odd){ /*helps break up rows by varying colors*/
+    background-image: linear-gradient(to bottom right, rgba(0, 183, 255, 0.527), rgb(225, 143, 250));
+}
+tr:nth-child(even){ /*helps break up rows by varying colors*/
+    background-image: linear-gradient(to bottom right,rgb(198, 83, 233),rgba(102, 209, 252, 0.527));
+}
+
+.firstRow{
+    background-color: rgb(49, 43, 43);
+    text-shadow: 2px 2px 4px white;
+}
+

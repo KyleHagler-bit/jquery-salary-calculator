@@ -46,7 +46,11 @@ let employees = [
     
     $('table tbody').append(rowElement);
 
+    
+
 }//end for of loop
+
+
 
 
 
@@ -66,11 +70,11 @@ $('.delete-button').on('click', function(event){
     let stringId = parentElement[0].innerHTML;
 
     let index = -1;
-    for (let i=0; i<employees.length;i++){
+    for (let i=0; i<employees.length;i++){ //checks to find match for id
         console.log(employees[i].idNum);
         if (stringId.search(employees[i].idNum) >= 0){
             console.log('match found');
-            index = i;
+            index = i; //get number so can splice clicked employee out of array
             console.log(index);
         } else{
 
@@ -83,12 +87,9 @@ $('.delete-button').on('click', function(event){
     // let n = stringId.search(employees.idNum.toString());
     // console.log(n);
 
-   
-  
-    
-    $(element).parents('tr').remove();
-    employees.splice(parentElement[index], 1);
-
+    $(element).parents('tr').remove(); //takes row off table
+    employees.splice(index,1); //takes employee out of array
+console.log(employees);
     
 
 }); //end delete click
@@ -104,11 +105,20 @@ function monthlyCost(){
     $('#submit').on('click', function(e) { //submit button is clicked
         const firstName = $('#firstName').val();
         const lastName =$('#lastName').val();
-        const idNum =$('#idNum').val();
+        const idNum =Number($('#idNum').val());
         const title =$('#title').val();
-        const annualSalary =$('#annualSalary').val();
+        const annualSalary =Number($('#annualSalary').val());
 
-        if (firstName != '' && lastName !='' && idNum != '' && title !='' && title != '' && annualSalary!=''){
+        let check = true;
+        for (let i=0; i<employees.length; i++){ //can't have multiple employees with same id!
+            if (idNum === employees[i].idNum){
+                alert('Error: Employee id is already on table');
+                check = false;
+                break;
+                }
+            }
+        
+     if ((firstName != '' || lastName !='' || idNum != '' || title !='' || title != '' || annualSalary!='') && check === true){
 
         let newEmployee = {firstName, lastName, idNum, title, annualSalary};
         console.log(newEmployee);
@@ -116,11 +126,20 @@ function monthlyCost(){
         employees.push(newEmployee);
         console.log(employees);
 
+        $('#firstName').val(''); //allows inputs to clear after employee is succesfully added to table
+        $('#lastName').val('');
+        $('#idNum').val('');
+        $('#title').val('');
+        $('#annualSalary').val('');
+
         setUp();
-        }
-        else {
+        } //end 
+
+        else if (firstName === '' || lastName ==='' || idNum === '' || title ==='' || title === '' || annualSalary==='') {
             alert('Input fields cannot be left blank before submitting');
         }
+    
+    
     });
 
     
