@@ -6,6 +6,7 @@ h1 {
     box-shadow: 10px 10px 8px #888888; /*sort of scuffs up right hand side though...*/
     padding: 15px;
     margin-top: 0px;
+    
 }
 
 h2{ /*Add Employee text*/
@@ -49,7 +50,8 @@ thead{
 td {
     text-align: center;
     border-bottom: 1px solid black;
-    text-align: left;    
+    text-align: left;
+    max-width: 100px;    
     
 }
 
