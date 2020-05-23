@@ -24,6 +24,8 @@ let employees = [
     }
     ];
 
+    let totalMonthly = 0;
+
     function clearTable(){
         //lets clear the table
         $('table tbody').empty();
@@ -46,12 +48,37 @@ let employees = [
 
 }//end for of loop
 
-let rowElement = $('<tr></tr>'); //trying to add empty row at end
-rowElement.append('<td></td>');
-$('table tbody').append(rowElement);
+$('.delete-button').on('click', function(event){
+    //clear only the row that the clicked button is in!
+    const element = event.target; //this is the button that fired this event
+    // $(element).parent().parent().remove(); THIS LINE WORKS goes find grandparents
+    $(element).parents('tr').remove();
+});
+
+
+// let rowElement = $('<tr></tr>'); //trying to add empty row at end
+// rowElement.append('<td></td>');
+// $('table tbody').append(rowElement);
 
     }//end function setUp
 
 
+    function monthlyCost(){
+
+    }//end function
+
+    $('#submit').on('click', function(e) { //submit button is clicked
+        const firstName = $('#firstName').val();
+        const lastName =$('#lastName').val();
+        const idNum =$('#idNum').val();
+        const title =$('#title').val();
+        const annualSalary =$('#annualSalary').val();
+
+        let newEmployee = {firstName, lastName, idNum, title, annualSalary};
+        console.log(newEmployee);
+
+        employees.push(newEmployee);
+        console.log(employees);
+    });
 
     $(document).ready(setUp);

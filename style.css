@@ -2,9 +2,14 @@ h1 {
     background-image: linear-gradient(to bottom right, rgb(0, 183, 255), rgb(204, 114, 231));
     text-align: center;
     color: rgb(234, 136, 243);
-    text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
-    box-shadow: 10px 10px 8px #888888;
+    text-shadow: 0 0 10px #FF0000, 0 0 10px black;
+    box-shadow: 10px 10px 8px #888888; /*sort of scuffs up right hand side though...*/
     padding: 15px;
+    margin-top: 0px;
+}
+
+h2{ /*Add Employee text*/
+    margin-left: 20px;
 }
 
 body {
@@ -12,23 +17,27 @@ body {
 }
 
 table {
-    width: 90%;
+    width: 700px; /*keeps table at managable size in DOM*/
     margin-left: 5%;
     margin-right: 5%;
     border: 1px solid black;
     padding: 5px;
     border-radius: 5px;
-    /* border-collapse: collapse; dont want to collapse ALL borders*/
+     border-collapse: collapse; /*makes lines all the way through*/
     
 }
 
 th {
     border-bottom: 1px solid black;
+    height: 30px;
     
 }
 
 th, td { /* targets both things */
     padding: 5px;
+    border-left:1px solid black; /*allows "boxes" to be made in the table*/
+    border-right: 1px solid black; /*that is to say, adds vertical lines*/
+    
     
 }
 
@@ -44,11 +53,16 @@ td {
     
 }
 
+.inputs{ /*make input fields a little more spaced out */
+    padding: 10px;
+
+}
+
 .salary{ /*pushes salary to right of box*/
     text-align:right;
 }
 
-tr:last-child td {
+tr:last-child td { /*stop bottom most row from displaying border line*/
     border-bottom: 0px;
 }
 
@@ -57,20 +71,33 @@ tr:last-child td {
     border-radius: 5px;
     width: 100%;
     color: black;
-    background-color: red;
+    background-image: linear-gradient(to bottom right, rgba(241, 6, 17, 0.527), rgb(177, 5, 5));
+
     border: 3px solid black;
     font: 12px Arial, sans-serif;
     font-weight: bold;
+    box-shadow: 1px 3px;
 }
 
 .submit{
-    float: right;
+    /* float: right; */
     padding: 5px;
     border-radius: 5px;
-    margin-right: 10px;
-    color: white;
-    background-color: green;
-    border: 3px solid white;
-    font: 16px Arial, sans-serif;
+    margin-left: 600px;
+    color: black;
+    background-image: linear-gradient(to bottom right, rgba(12, 54, 12, 0.527), rgb(70, 245, 93));
 
+    border: 3px solid black;
+    font: 16px Arial, sans-serif;
+    box-shadow: 1px 3px;
+
+}
+
+.totalMonth{
+    
+    margin-left: 500px;
+}
+
+.content{
+    border: 2px solid black;
 }
