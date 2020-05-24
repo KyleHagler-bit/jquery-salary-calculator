@@ -24,7 +24,7 @@ let employees = [
     }
     ];
 
-    let totalMonthly = 0;
+    let monthTotal = 0;
 
     function clearTable(){
         //lets clear the table
@@ -33,6 +33,7 @@ let employees = [
 
     function setUp(){
         clearTable();
+        monthlyCost(); //show intial monthly cost
 
         //intialize the table with our employees
    for (let employee of employees){
@@ -90,15 +91,14 @@ $('.delete-button').on('click', function(event){
     $(element).parents('tr').remove(); //takes row off table
     employees.splice(index,1); //takes employee out of array
 console.log(employees);
+monthlyCost();
     
 
 }); //end delete click
 
 }//end function setUp
 
-function monthlyCost(){
 
-}//end function
 
 
 
@@ -139,11 +139,26 @@ function monthlyCost(){
             alert('Input fields cannot be left blank before submitting');
         }
     
-    
-    });
+    monthlyCost();
+    }); //end submit click
 
     
+    function monthlyCost(){ //calculate total monthly $ from employees
+        let yearTotal =0;
+        for (let i=0; i < employees.length;i++){
+            yearTotal += employees[i].annualSalary;
+        }
+        console.log(yearTotal);
 
+        monthTotal = (yearTotal/12).toFixed(2); //since 12 months in a year
+            let el = $('#monthly');
+            el.empty();
+            el.append(monthTotal);
+
+
+
+
+    }//end function
     
 
     $(document).ready(setUp);
