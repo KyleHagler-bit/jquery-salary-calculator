@@ -37,12 +37,8 @@ th {
 th, td { /* targets both things */
     padding: 5px;
     border-left:1px solid black; /*allows "boxes" to be made in the table*/
-    border-right: 1px solid black; /*that is to say, adds vertical lines*/
-    
-    
+    border-right: 1px solid black; /*that is to say, adds vertical lines*/  
 }
-
-
 
 td {
     text-align: center;
@@ -93,7 +89,6 @@ tr:last-child td { /*stop bottom most row from displaying border line*/
 }
 
 .totalMonth{
-    
     margin-left: 500px;
 }
 
@@ -114,3 +109,21 @@ tr:nth-child(even){ /*helps break up rows by varying colors*/
     text-shadow: 2px 2px 4px white;
 }
 
+.footer{
+    background-color: rgb(49, 43, 43);
+    text-shadow: 2px 2px 4px white;
+}
+
+.deleteAll{
+    padding: 5px;
+    border-radius: 5px;
+    width: 90px;
+    color: black;
+    background-image: linear-gradient(to bottom right, rgba(241, 6, 17, 0.527), rgb(177, 5, 5));
+
+    border: 3px solid black;
+    font: 12px Arial, sans-serif;
+    font-weight: bold;
+    box-shadow: 1px 3px;
+    margin-left: 10px;
+}

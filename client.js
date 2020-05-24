@@ -1,6 +1,6 @@
 console.log('testing');
 
-let employees = [
+let employees = [ //starts with 3 employees already entered
     {
         firstName: 'Jen',
         lastName: 'Barber',
@@ -26,48 +26,36 @@ let employees = [
 
     let monthTotal = 0;
 
-    function clearTable(){
-        //lets clear the table
+    function clearTable(){ //clear the table
         $('table tbody').empty();
     } //end func clearTable
 
-    function setUp(){
+    function setUp(){ //-------------------------------------------------------------------
         clearTable();
         monthlyCost(); //show intial monthly cost
 
-        //intialize the table with our employees
-   for (let employee of employees){
+        
+   for (let employee of employees){ //intialize the table with our employees
     let rowElement = $('<tr class = "row"></tr>');
-    rowElement.append(`<td>${employee.firstName}</td>`);
-    rowElement.append(`<td>${employee.lastName}</td>`);
-    rowElement.append(`<td>${employee.idNum}</td>`);
-    rowElement.append(`<td>${employee.title}</td>`);
-    rowElement.append(`<td class = "salary">$${employee.annualSalary}</td>`);
-    rowElement.append(`<td><button class="delete-button">Delete</button></td>`);
+        rowElement.append(`<td>${employee.firstName}</td>`);
+        rowElement.append(`<td>${employee.lastName}</td>`);
+        rowElement.append(`<td>${employee.idNum}</td>`);
+        rowElement.append(`<td>${employee.title}</td>`);
+        rowElement.append(`<td class = "salary">$${employee.annualSalary}</td>`);
+        rowElement.append(`<td><button class="delete-button">Delete</button></td>`);
     
     $('table tbody').append(rowElement);
 
+    }//end for of loop
+
+    //add empty row at end of table? stylistic choice perhaps
+
+$('.delete-button').on('click', function(event){ //clear only the row that clicked button is in!
     
-
-}//end for of loop
-
-
-
-
-
-
-// let rowElement = $('<tr></tr>'); //trying to add empty row at end
-// rowElement.append('<td></td>');
-// $('table tbody').append(rowElement);
-
-$('.delete-button').on('click', function(event){
-    //clear only the row that the clicked button is in!
     const element = event.target; //this is the button that fired this event
     
-    // $(element).parent().parent().remove(); THIS LINE WORKS goes find grandparents
-    
-    parentElement = $(element).parents('tr');
-    console.log(parentElement[0].innerHTML);
+    parentElement = $(element).parents('tr'); // $(element).parent().parent().remove();  goes find grandparents
+    console.log(parentElement[0].innerHTML); //trying to see what is found inside what...
     let stringId = parentElement[0].innerHTML;
 
     let index = -1;
@@ -77,37 +65,28 @@ $('.delete-button').on('click', function(event){
             console.log('match found');
             index = i; //get number so can splice clicked employee out of array
             console.log(index);
-        } else{
-
-        } //end else
-        
+        } 
     }; //ends for loop
 
     console.log(index);
     console.log(employees[index]);
-    // let n = stringId.search(employees.idNum.toString());
-    // console.log(n);
 
     $(element).parents('tr').remove(); //takes row off table
     employees.splice(index,1); //takes employee out of array
-console.log(employees);
-monthlyCost();
+console.log(employees); //check new array to see if it worked
+monthlyCost(); //calculate the new monthly cost with altered array
     
-
 }); //end delete click
 
-}//end function setUp
+}//end function setUp ------------------------------------------------------------------------
 
 
-
-
-
-    $('#submit').on('click', function(e) { //submit button is clicked
-        const firstName = $('#firstName').val();
+    $('#submit').on('click', function(e) { //submit button is clicked CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+        const firstName = $('#firstName').val(); //get all inputed values
         const lastName =$('#lastName').val();
         const idNum =Number($('#idNum').val());
         const title =$('#title').val();
-        const annualSalary =Number($('#annualSalary').val());
+        const annualSalary =Number($('#annualSalary').val()); //have to make sure is number not string
 
         let check = true;
         for (let i=0; i<employees.length; i++){ //can't have multiple employees with same id!
@@ -116,15 +95,19 @@ monthlyCost();
                 check = false;
                 break;
                 }
+                else if (annualSalary < 0){ //cant have annual salary be negative
+                    alert('Error: Annual Salary cannot fall below $0') //what is this? an internship?
+                    break;
+                }
             }
         
-     if ((firstName != '' || lastName !='' || idNum != '' || title !='' || title != '' || annualSalary!='') && check === true){
+     if ((firstName != '' || lastName !='' || idNum != '' || title !='' || title != '' || annualSalary!='') && check === true && annualSalary>=0){
 
         let newEmployee = {firstName, lastName, idNum, title, annualSalary};
         console.log(newEmployee);
 
-        employees.push(newEmployee);
-        console.log(employees);
+        employees.push(newEmployee); //add to array
+        console.log(employees); //check the array
 
         $('#firstName').val(''); //allows inputs to clear after employee is succesfully added to table
         $('#lastName').val('');
@@ -140,25 +123,40 @@ monthlyCost();
         }
     
     monthlyCost();
-    }); //end submit click
+    
+    }); //end submit click CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 
     
-    function monthlyCost(){ //calculate total monthly $ from employees
+    function monthlyCost(){ //calculate total monthly $ from employees $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
         let yearTotal =0;
         for (let i=0; i < employees.length;i++){
             yearTotal += employees[i].annualSalary;
         }
-        console.log(yearTotal);
+        console.log('The sum of all annual salaries in array is: ',yearTotal);
 
         monthTotal = (yearTotal/12).toFixed(2); //since 12 months in a year
             let el = $('#monthly');
             el.empty();
-            el.append(monthTotal);
-
-
-
-
-    }//end function
+            el.append(monthTotal); //have it appear on the DOM
+    }//end function $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     
+    $('#deleteAll').on('click', function(e) {
+        clearTable(); //takes row off DOM
+        if (employees.length ===0){ //if button pressed twice in a row
+            alert('The table is already empty!');
+        }
+        employees=[]; //empty out array so new things can be submitted!
+    });
+
 
     $(document).ready(setUp);
+
+
+    //Things to look out for/think about:
+    //salary should never be negative
+    //make sure deleted row is correct row
+    //make sure only one row deletes at a time
+    //make sure inputted ids are different
+    //make input fields required (should all be required?)
+    //clear all button?
+    //possible bug found but I couldn't recreate it... still seemed to work? console logs just off (showing -1 for index)
